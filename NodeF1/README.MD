@@ -1,81 +1,90 @@
-<div align="center">
+# 🏎️ Desafio Técnico: Classificador de Equipes de Fórmula 1
 
-  <img src="./.github/assets/blue-saiyan-bg.png" alt="Logo" height="200">
-  <h1 align="center"><strong>NODE BOILERPLATE - BLUE EDITION</strong></h1>
-  <p align="center">
-	  Don't start a new Node project from zero!<br> Use this simple <b>Nodejs</b> boilerplate with pre-configured <b>Typescript</b> in a modern way.
-  </p>
+Este desafio tem como objetivo testar sua habilidade com Node.js, TypeScript e Fastify, utilizando uma base já configurada com o **Node Boilerplate - Blue Edition**.
 
-</div>
+<img src="./.github/assets/blue-saiyan-bg.png" alt="Logo" height="200">
 
-<br />
+## Descrição
 
-  <!-- Badges -->
-<div align="center">
-  
-  [![TypeScript version][ts-badge]][typescript-5-4]
-  [![Node.js version][nodejs-badge]][nodejs]
+Implementação de uma nova rota na API que classifique as equipes de Fórmula 1 com base em sua localização geográfica. A aplicação já possui uma estrutura funcional com uma lista de equipes disponível no arquivo `server.ts`.
 
-</div>
+---
 
-# 🚀 Technologies
+## Objetivo
 
-This code source was developed with the following items:
+Criar a rota `GET /teams/classified` que:
 
-### 📦 Dependencies
+- Agrupa as equipes por país de origem.
+- Retorna os dados no seguinte formato:
 
-- [typescript][typescript-npm] - Superset for application scale JavaScript development
-- [tsx][tsx-npm] - TypeScript Execute (tsx): Enable Node.js to run TypeScript
-- [tsup][tsup-npm] - Bundle your TypeScript library with no config, powered by esbuild
-- [@types/node][@types/node-npm] - type definitions for node
-
-### 📄 Files
-
-- `.gitignore` - Ignore folders like node_modules
-- `.env` - Enviroment variables
-- `tsconfig.json` - Typescript configure Options
-
-### ⚡ Scripts
-
-- `npm run dist`: Compiles TypeScript files to JavaScript in the dist directory.
-- `npm run start:dev`: Runs the server in development mode with environment variables loaded from the .env file.
-- `npm run start:watch`: Runs the server in development mode with support for automatic reload on file changes.
-- `npm run start:dist`: Compiles the project and runs the compiled version from the dist directory.
-
-# 👨‍💻 How To Use
-
-click in **[Use this template]** OR
-
-To clone and run this application, you'll need [Git](https://git-scm.com), [Node.js v20+](https://nodejs.org/en/) + [NPM v10+](https://nodejs.org/en/) installed on your computer. From your command line:
-
-```bash
-# Clone this repository
-$ git clone https://github.com/felipeAguiarCode/node-blue-boilerplate
-
-# Go into the repository
-$ cd node-blue-boilerplate
-
-# Install dependencies
-$ npm install
+```json
+{
+  "reino_unido": ["McLaren", "Mercedes", ...],
+  "italia": ["Ferrari", "AlphaTauri", ...],
+  "outros": ["Haas", ...]
+}
 ```
 
-## Author
+---
 
-| [<img src="https://avatars3.githubusercontent.com/u/37452836?s=96&v=4"><br><sub>Felipe Aguiar</sub>](https://github.com/felipeAguiarCode) |
-| :---------------------------------------------------------------------------------------------------------------------------------------: |
-|                                            [Linkedin](www.linkedin.com/in/felipe-aguiar-exe/)                                             |
+## Dados de Entrada
 
-# Credits
+A lista de equipes já está definida no array `teams` dentro do arquivo `server.ts`. Cada equipe possui os campos `id`, `name` e `base`.
 
-icons by [Pino Lamanna][dribble-icon]
+---
 
-[typescript]: https://www.typescriptlang.org/
-[typescript-5-4]: https://www.typescriptlang.org/
-[ts-badge]: https://img.shields.io/badge/TypeScript-5.4-blue.svg
-[nodejs-badge]: https://img.shields.io/badge/Node.js->=%2020.00-blue.svg
-[nodejs]: https://nodejs.org/
-[dribble-icon]: https://dribbble.com/Schakalwal
-[typescript-npm]: https://www.npmjs.com/package/typescript
-[tsx-npm]: https://www.npmjs.com/package/tsx
-[tsup-npm]: https://www.npmjs.com/package/tsup
-[@types/node-npm]: https://www.npmjs.com/package/@types/node
+## Saída Esperada
+
+A resposta da rota deve ser um objeto JSON com os nomes das equipes agrupados por país:
+
+```json
+{
+  "reino_unido": ["McLaren", "Mercedes", "Alpine", "Aston Martin", "Williams", "Uralkali Haas F1 Team"],
+  "italia": ["Ferrari", "AlphaTauri", "Scuderia Toro Rosso"],
+  "outros": ["Alfa Romeo Racing", "Haas"]
+}
+```
+
+---
+
+## Dicas de Implementação
+
+- Utilize `.filter()` para separar as equipes por país.
+- Use `.map()` para extrair apenas os nomes das equipes.
+- Crie a nova rota diretamente no `server.ts`.
+
+---
+
+## Estrutura do Projeto
+
+- `server.ts`: lógica do servidor e dados das equipes.
+- `tsconfig.json`: configuração do TypeScript.
+- `package.json`: scripts úteis para desenvolvimento.
+
+---
+
+## Scripts Disponíveis
+
+```bash
+# Compila os arquivos TypeScript
+npm run dist
+
+# Inicia o servidor em modo desenvolvimento
+npm run start:dev
+
+# Inicia com hot reload
+npm run start:watch
+
+# Compila e executa o projeto
+npm run start:dist
+```
+
+---
+
+## Tecnologias Utilizadas
+
+- **Node.js**
+- **TypeScript**
+- **Fastify**
+- **TSX**
+- **TSUP**
