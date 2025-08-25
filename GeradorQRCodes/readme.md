@@ -1,98 +1,126 @@
-<!--START_SECTION:header-->
-<div align="center">
-  <p align="center">
-    <img 
-      alt="DIO Education" 
-      src="https://raw.githubusercontent.com/digitalinnovationone/template-github-trilha/main/.github/assets/logo.webp" 
-      width="100px" 
-    />
-    <h1>Gerador de QRcode para e-commerce</h1>
-  </p>
-</div>
-<!--END_SECTION:header-->
+# 📦 Desafio Técnico: Utilitário de QR Code e Senhas para E-commerce
 
-<p align="center">
-  <img src="https://img.shields.io/static/v1?label=DIO&message=Education&color=E94D5F&labelColor=202024" alt="DIO Project" />
-  <a href="NIVEL"><img  src="https://img.shields.io/static/v1?label=Nivel&message=Basico&color=E94D5F&labelColor=202024" alt="Nivel"></a>
+Este desafio tem como objetivo testar sua habilidade com Node.js, manipulação de dependências, variáveis de ambiente e estruturação de projetos em camadas. Você trabalhará sobre um projeto já iniciado que oferece duas funcionalidades principais: geração de QR Codes e criação de senhas seguras.
 
-</p>
+---
 
-<!--  -->
-<table align="center">
-<thead>
-  <tr>
-    <td>
-        <p align="center">Expert</p>
-        <a href="https://github.com/felipeAguiarCode">
-        <img src="https://avatars0.githubusercontent.com/u/37452836?v=3&s=115" alt="@felipeAguiarCode"><br>
-      </a>
-    </td>
-    <td colspan="3">
-    <p>🎉 10y+ em sistemas comerciais com .NET C# e NODE.JS.
-      <br/>
-     🌟 Desenvolvedor fullstack - Coordenador de educação na DIO
-      <br/>
-    👨‍💻 Foco em front-ends SPA com React, Angular e Vue.js
-    </p>
-      <a 
-      href="https://www.linkedin.com/in/felipe-me/" 
-      align="center">
-           <img 
-            align="center" 
-            alt="Material de Apoio" 
-            src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"
-            >
-        </a>
-        <a href="https://www.instagram.com/felipeaguiar.exe/" target="_blank">
-            <img 
-              align="center" 
-              alt="Instagram" 
-              src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white"
-            >
-        </a>
-    </td>
-  </tr>
-</thead>
-</table>
-<!--  -->
+## Objetivo
 
-<br/>
-<br/>
+Implementar e testar um sistema interativo que:
 
-## 💻 Sobre o Projeto
+1. Solicita ao usuário a escolha entre gerar um QR Code ou uma senha.
+2. Executa a funcionalidade escolhida com base em configurações definidas no `.env`.
 
-Vamos construir um kit de utilidades para um e-commerce, o projeto deve ser escalável para ter adição de novas features.
+---
 
-## 📚 Pré-requisitos de Habilidades e Níveis de Conhecimento
+## Funcionalidades
 
-Antes de ingressar neste conteúdo, é necessário possuir conhecimento prévio nas seguintes áreas:
+### Geração de Senhas
 
-- Lógica de programação
-- Javascript | Básico
-- NodeJS | Básico
-- Node Modules
-- NPM, Packages, Dependencies
-- Variáveis ambiente (.env)
+- A senha deve ser gerada com base nas variáveis de ambiente, em que é utilizado a funcionalidade nativa atual (desde a versão 20) do Node para a leitura delas no JavaScript:
+  - `UPPERCASE_LETTERS`
+  - `LOWERCASE_LETTERS`
+  - `NUMBERS`
+  - `SPECIAL_CHARACTERS`
+  - `PASSWORD_LENGTH`
+- A senha gerada deve ser exibida no terminal com destaque em verde.
 
-## 🛠️ Habilidades e Sub-habilidades que vamos aprender neste conteúdo
+### Geração de QR Code
 
-- Como gerar qrcode com node
-- Como lidar com várias dependências de um projeto
-- Como pensar em projetos por camadas
+- O usuário deve informar:
+  - Um link para gerar o QR Code.
+  - O tipo de QR Code:
+    - `1` → Normal
+    - `2` → Terminal
+- O QR Code deve ser exibido conforme o tipo selecionado.
 
-## 🎯 Objetivos e Resultados Esperados
+---
 
-Após a conclusão do curso/projeto, os estudantes estarão aptos a:
+## Entrada
 
-- Criar projetos nodejs que gerem multiplas dependências
+A entrada será feita via terminal, utilizando o pacote `prompt`. O usuário deve escolher entre:
 
-<!--START_SECTION:footer-->
+```
+Escolha a ferramenta (1 - QRCODE ou (2 - PASSWORD)
+```
 
-<br />
-<br />
+---
 
-<p align="center">
-  <a href="https://www.dio.me/" target="_blank">
-    <img align="center" src="https://raw.githubusercontent.com/digitalinnovationone/template-github-trilha/main/.github/assets/footer.png" alt="banner"/>
-  </a>
-</p>
+## Saída Esperada
+
+### Exemplo 1: Senha
+
+```bash
+password
+A8f$kL2@xQ
+```
+
+### Exemplo 2: QR Code
+
+```bash
+Digite o link para gerar o QR CODE
+https://meusite.com/produto/123
+
+Escolha entre o tipo de QRcode (1- NORMAL ou (2- TERMINAL)
+2
+
+# QR Code exibido no terminal
+```
+
+---
+
+## Arquivos Relevantes
+
+| Arquivo                        | Função                                                                 |
+|-------------------------------|------------------------------------------------------------------------|
+| `index.js`                    | Ponto de entrada do projeto                                           |
+| `prompt-schema-main.js`       | Define o menu principal de escolha                                    |
+| `qr-code/create.js`           | Lógica para gerar QR Code                                             |
+| `password/create.js`          | Lógica para gerar senha                                               |
+| `permittedCharacters.js`      | Define os caracteres permitidos com base no `.env`                    |
+| `.env`                        | Define as configurações de geração de senha                           |
+
+---
+
+## Dependências
+
+- `chalk` – Estilização de texto no terminal
+- `prompt` – Entrada interativa via terminal
+- `qrcode-terminal` – Geração de QR Code no terminal
+
+---
+
+## Como Executar
+
+```bash
+# Instale as dependências
+npm install
+
+# Configure o arquivo .env com as variáveis desejadas
+UPPERCASE_LETTERS=true
+LOWERCASE_LETTERS=true
+NUMBERS=true
+SPECIAL_CHARACTERS=true
+PASSWORD_LENGTH=10
+
+# Inicie o projeto
+npm start
+```
+
+---
+
+## Desafio Extra
+
+Implemente uma terceira opção no menu principal:
+
+```
+3 - Gerar QR Code + Senha
+```
+
+Essa opção deve gerar ambos os recursos em sequência, com base nas configurações atuais.
+
+## Quer ir além?
+
+- Adicione validações para o link do QR Code.
+- Permita salvar a senha gerada em um arquivo `.txt`.
+- Crie testes automatizados para as funções de geração. 
